@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Web Services API : PFX_BillingReportService
+-->
+<definitions targetNamespace="http://soap.sforce.com/schemas/class/PFX_BillingReportService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://soap.sforce.com/schemas/class/PFX_BillingReportService">
+ <types>
+  <xsd:schema elementFormDefault="qualified" targetNamespace="http://soap.sforce.com/schemas/class/PFX_BillingReportService">
+   <xsd:element name="AllowFieldTruncationHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="allowFieldTruncation" type="xsd:boolean"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="CallOptions">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="client" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="DebuggingHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="categories" minOccurs="0" maxOccurs="unbounded" type="tns:LogInfo"/>
+      <xsd:element name="debugLevel" type="tns:LogType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:complexType name="LogInfo">
+    <xsd:sequence>
+     <xsd:element name="category" type="tns:LogCategory"/>
+     <xsd:element name="level" type="tns:LogCategoryLevel"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:simpleType name="LogCategory">
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="Db"/>
+     <xsd:enumeration value="Workflow"/>
+     <xsd:enumeration value="Validation"/>
+     <xsd:enumeration value="Callout"/>
+     <xsd:enumeration value="Apex_code"/>
+     <xsd:enumeration value="Apex_profiling"/>
+     <xsd:enumeration value="Visualforce"/>
+     <xsd:enumeration value="System"/>
+     <xsd:enumeration value="Wave"/>
+     <xsd:enumeration value="Nba"/>
+     <xsd:enumeration value="Data_access"/>
+     <xsd:enumeration value="All"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="LogCategoryLevel">
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="None"/>
+     <xsd:enumeration value="Finest"/>
+     <xsd:enumeration value="Finer"/>
+     <xsd:enumeration value="Fine"/>
+     <xsd:enumeration value="Debug"/>
+     <xsd:enumeration value="Info"/>
+     <xsd:enumeration value="Warn"/>
+     <xsd:enumeration value="Error"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="LogType">
+    <xsd:restriction base="xsd:string">
+     <xsd:enumeration value="None"/>
+     <xsd:enumeration value="Debugonly"/>
+     <xsd:enumeration value="Db"/>
+     <xsd:enumeration value="Profiling"/>
+     <xsd:enumeration value="Callout"/>
+     <xsd:enumeration value="Detail"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:element name="DebuggingInfo">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="debugLog" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="SessionHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:simpleType name="ID">
+    <xsd:restriction base="xsd:string">
+     <xsd:length value="18"/>
+     <xsd:pattern value="[a-zA-Z0-9]{18}"/>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType name="address">
+    <xsd:complexContent>
+     <xsd:extension base="tns:location">
+      <xsd:sequence>
+       <xsd:element name="city" type="xsd:string"/>
+       <xsd:element name="country" type="xsd:string"/>
+       <xsd:element name="countryCode" type="xsd:string"/>
+       <xsd:element name="geocodeAccuracy" type="xsd:string"/>
+       <xsd:element name="postalCode" type="xsd:string"/>
+       <xsd:element name="state" type="xsd:string"/>
+       <xsd:element name="stateCode" type="xsd:string"/>
+       <xsd:element name="street" type="xsd:string"/>
+      </xsd:sequence>
+     </xsd:extension>
+    </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="location">
+    <xsd:sequence>
+     <xsd:element name="latitude" type="xsd:double"/>
+     <xsd:element name="longitude" type="xsd:double"/>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="cleanUpFinExportRows">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="periodId" type="xsd:string" nillable="true"/>
+      <xsd:element name="billingStatus" type="xsd:string" nillable="true"/>
+      <xsd:element name="searchTerm" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="cleanUpFinExportRowsResponse">
+    <xsd:complexType>
+     <xsd:sequence/>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="createFinExportRequests">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="periodId" type="xsd:string" nillable="true"/>
+      <xsd:element name="isIERP" type="xsd:boolean" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="createFinExportRequestsResponse">
+    <xsd:complexType>
+     <xsd:sequence/>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="getCumulativeInfo">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="recordIds" minOccurs="0" maxOccurs="unbounded" type="xsd:string" nillable="true"/>
+      <xsd:element name="isFinal" type="xsd:boolean" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="getCumulativeInfoResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="getReportHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="periodId" type="xsd:string" nillable="true"/>
+      <xsd:element name="billingStatus" type="xsd:string" nillable="true"/>
+      <xsd:element name="searchTerm" type="xsd:string" nillable="true"/>
+      <xsd:element name="invoiceIds" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="getReportHeaderResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="receiveData">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="periodId" type="xsd:string" nillable="true"/>
+      <xsd:element name="page" type="xsd:int" nillable="true"/>
+      <xsd:element name="billingStatus" type="xsd:string" nillable="true"/>
+      <xsd:element name="searchTerm" type="xsd:string" nillable="true"/>
+      <xsd:element name="isFinal" type="xsd:boolean" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="receiveDataResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="receiveDataByTimeAndBillingStatusAndSearchTerm">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="periodId" type="xsd:string" nillable="true"/>
+      <xsd:element name="page" type="xsd:int" nillable="true"/>
+      <xsd:element name="to" type="xsd:long" nillable="true"/>
+      <xsd:element name="billingStatus" type="xsd:string" nillable="true"/>
+      <xsd:element name="searchTerm" type="xsd:string" nillable="true"/>
+      <xsd:element name="isFinal" type="xsd:boolean" nillable="true"/>
+      <xsd:element name="invoiceIds" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="receiveDataByTimeAndBillingStatusAndSearchTermResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+ </types>
+ <!-- Message for the header parts -->
+ <message name="Header">
+  <part name="AllowFieldTruncationHeader" element="tns:AllowFieldTruncationHeader"/>
+  <part name="CallOptions" element="tns:CallOptions"/>
+  <part name="DebuggingHeader" element="tns:DebuggingHeader"/>
+  <part name="DebuggingInfo" element="tns:DebuggingInfo"/>
+  <part name="SessionHeader" element="tns:SessionHeader"/>
+ </message>
+ <!-- Operation Messages -->
+ <message name="cleanUpFinExportRowsRequest">
+  <part element="tns:cleanUpFinExportRows" name="parameters"/>
+ </message>
+ <message name="cleanUpFinExportRowsResponse">
+  <part element="tns:cleanUpFinExportRowsResponse" name="parameters"/>
+ </message>
+ <message name="createFinExportRequestsRequest">
+  <part element="tns:createFinExportRequests" name="parameters"/>
+ </message>
+ <message name="createFinExportRequestsResponse">
+  <part element="tns:createFinExportRequestsResponse" name="parameters"/>
+ </message>
+ <message name="getCumulativeInfoRequest">
+  <part element="tns:getCumulativeInfo" name="parameters"/>
+ </message>
+ <message name="getCumulativeInfoResponse">
+  <part element="tns:getCumulativeInfoResponse" name="parameters"/>
+ </message>
+ <message name="getReportHeaderRequest">
+  <part element="tns:getReportHeader" name="parameters"/>
+ </message>
+ <message name="getReportHeaderResponse">
+  <part element="tns:getReportHeaderResponse" name="parameters"/>
+ </message>
+ <message name="receiveDataRequest">
+  <part element="tns:receiveData" name="parameters"/>
+ </message>
+ <message name="receiveDataResponse">
+  <part element="tns:receiveDataResponse" name="parameters"/>
+ </message>
+ <message name="receiveDataByTimeAndBillingStatusAndSearchTermRequest">
+  <part element="tns:receiveDataByTimeAndBillingStatusAndSearchTerm" name="parameters"/>
+ </message>
+ <message name="receiveDataByTimeAndBillingStatusAndSearchTermResponse">
+  <part element="tns:receiveDataByTimeAndBillingStatusAndSearchTermResponse" name="parameters"/>
+ </message>
+ <portType name="PFX_BillingReportServicePortType">
+  <operation name="cleanUpFinExportRows">
+   <input message="tns:cleanUpFinExportRowsRequest"/>
+   <output message="tns:cleanUpFinExportRowsResponse"/>
+  </operation>
+  <operation name="createFinExportRequests">
+   <input message="tns:createFinExportRequestsRequest"/>
+   <output message="tns:createFinExportRequestsResponse"/>
+  </operation>
+  <operation name="getCumulativeInfo">
+   <input message="tns:getCumulativeInfoRequest"/>
+   <output message="tns:getCumulativeInfoResponse"/>
+  </operation>
+  <operation name="getReportHeader">
+   <input message="tns:getReportHeaderRequest"/>
+   <output message="tns:getReportHeaderResponse"/>
+  </operation>
+  <operation name="receiveData">
+   <input message="tns:receiveDataRequest"/>
+   <output message="tns:receiveDataResponse"/>
+  </operation>
+  <operation name="receiveDataByTimeAndBillingStatusAndSearchTerm">
+   <input message="tns:receiveDataByTimeAndBillingStatusAndSearchTermRequest"/>
+   <output message="tns:receiveDataByTimeAndBillingStatusAndSearchTermResponse"/>
+  </operation>
+ </portType>
+ <binding name="PFX_BillingReportServiceBinding" type="tns:PFX_BillingReportServicePortType">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="cleanUpFinExportRows">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="createFinExportRequests">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="getCumulativeInfo">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="getReportHeader">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="receiveData">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="receiveDataByTimeAndBillingStatusAndSearchTerm">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="PFX_BillingReportServiceService">
+  <documentation></documentation>
+  <port binding="tns:PFX_BillingReportServiceBinding" name="PFX_BillingReportService">
+   <soap:address location="https://twc--uat.sandbox.my.salesforce.com/services/Soap/class/PFX_BillingReportService"/>
+  </port>
+ </service>
+</definitions>
